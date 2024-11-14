@@ -1,17 +1,17 @@
 # Deployment Information
 pods_status:
-  main_pods_running: #TODO: Enter number of main pods running
-  canary_pods_running: #TODO: Enter number of canary pods running
+  main_pods_running: 10
+  canary_pods_running: 4
 
 # Service Information
 service_endpoints:
-  main_service_cluster_ip: #TODO: Enter the ClusterIP of main service
-  canary_service_cluster_ip: #TODO: Enter the ClusterIP of canary service
+  main_service_cluster_ip: 10.109.80.169
+  canary_service_cluster_ip: 10.96.183.14
 
 # Ingress Information
 ingress_details:
-  address: #TODO: Enter the Ingress controller IP address
-  host: #TODO: Enter the configured host (should be canary-demo.local)
+  address: 192.168.49.2
+  host: canary-demo-ingress
 
 # Metrics
 main_deployment_metrics:
@@ -33,19 +33,19 @@ traffic_test_results:
 
 # Prometheus Queries
 prometheus_metrics:
-  main_request_rate: #TODO: Enter the result of rate(http_requests_total{version="v1"}[5m])
-  canary_request_rate: #TODO: Enter the result of rate(http_requests_total{version="v2"}[5m])
+  main_request_rate: 8
+  canary_request_rate: 6
 
 # Rollback Test
 rollback_test:
-  previous_revision: #TODO: Enter the revision number before rollback
-  rollback_command_used: #TODO: Enter the helm rollback command you used
+  previous_revision: 2
+  rollback_command_used: helm rollback canary-demo 1 -n canary-demo
   time_to_rollback_seconds: #TODO: Enter how long the rollback took to complete
 
 # Error Budget Calculation (based on 99.9% SLO)
 error_budget:
-  monthly_error_budget_seconds: #TODO: Calculate and enter the monthly error budget in seconds
-  remaining_error_budget_percentage: #TODO: Enter current remaining error budget percentage
+  monthly_error_budget_seconds: 2592.00
+  remaining_error_budget_percentage: 100.00%
 
 # Additional Observations
 observations:
